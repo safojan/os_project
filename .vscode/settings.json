@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "cmath": "cpp",
+        "iomanip": "cpp",
+        "board.h": "c",
+        "token.h": "c",
+        "iostream": "cpp"
+    }
+}
