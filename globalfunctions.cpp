@@ -1,1 +1,0 @@
-#include "globalfunctions.h"
