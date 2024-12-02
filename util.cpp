@@ -118,31 +118,39 @@ void DrawLine(int x1, int y1, int x2, int y2, int lwidth, float *color) {
 }
 
 // used for normalized coordinates
-void DrawString(int x, int y, int width, int height, const string &score,
-float*color) {
-	float fx = (float)x / width * 2 - 1, fy = (float)y / height * 2 - 1;
-	DrawString(fx, fy, score, color);
+// Used for normalized coordinates
+void DrawString(int x, int y, int width, int height, const string& str,
+                float* color, GLvoid* font) {
+    float fx = (float)x / width * 2 - 1;
+    float fy = (float)y / height * 2 - 1;
+    DrawString(fx, fy, str, color, font);
 }
-// Function draws a string at given x,y coordinates
-void DrawString(float x, float y, const string& score, float * color) {
-	//  A pointer to a font style..
-	//  Fonts supported by GLUT are: GLUT_BITMAP_8_BY_13,
-	//  GLUT_BITMAP_9_BY_15, GLUT_BITMAP_TIMES_ROMAN_10,
-	//  GLUT_BITMAP_TIMES_ROMAN_24, GLUT_BITMAP_HELVETICA_10,
-	//  GLUT_BITMAP_HELVETICA_12, and GLUT_BITMAP_HELVETICA_18.
-	glPushMatrix();
-	glLoadIdentity();
-	glDisable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, 0);
 
-	GLvoid *font_style = GLUT_BITMAP_TIMES_ROMAN_24;
-	if (color)
-		glColor3fv(color);
-	glRasterPos3f(x, y, 1);
-	//  Draw the characters one by one
-	for (int i = 0; i < score.size(); i++)
-		glutBitmapCharacter(font_style, score[i]);
-	glPopMatrix();
+// Function draws a string at given x,y coordinates
+void DrawString(float x, float y, const string& str, float* color, GLvoid* font) {
+    // A pointer to a font style..
+    // Fonts supported by GLUT are: GLUT_BITMAP_8_BY_13,
+    // GLUT_BITMAP_9_BY_15, GLUT_BITMAP_TIMES_ROMAN_10,
+    // GLUT_BITMAP_TIMES_ROMAN_24, GLUT_BITMAP_HELVETICA_10,
+    // GLUT_BITMAP_HELVETICA_12, and GLUT_BITMAP_HELVETICA_18.
+    glPushMatrix();
+    glLoadIdentity();
+    glDisable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    if (color)
+        glColor3fv(color);
+
+    if (!font)
+        font = GLUT_BITMAP_TIMES_ROMAN_24;  // Default font
+
+    glRasterPos3f(x, y, 1);
+
+    // Draw the characters one by one
+    for (int i = 0; i < str.size(); i++)
+        glutBitmapCharacter(font, str[i]);
+
+    glPopMatrix();
 }
 //
 //  Draws rounded rectangle.

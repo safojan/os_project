@@ -121,54 +121,62 @@ struct Board
 	}
 
 	void MenuDisplay()
-	{
-		DrawRectangle(0,0,1020,840,colors[WHITE]);
-		DrawRectangle(20,20,980,800,colors[BLACK]);
-		static int x=100,state=0;static float* ptr=colors[ORANGE];
-		DrawRectangle(x,20,45,50,ptr);
-		switch(state)
-		{
-			case 0:
-			{   
-				if(x<960)
-				x+=5;
-				else 
-				{
-					state=1;
-					ptr=colors[BLUE_VIOLET];
-				}
-				break;
-			}
-			case 1:
-			{
-				if(x>10)
-				x-=5;
-				else
-				{
-					state=0;
-					ptr=colors[ORANGE];
-				}
-				break;
-			}
-		}
-		int x1=100;
-		//Drawing Manu
-		DrawRoundRect(150+x1,690,500,40,colors[WHITE]);
-		DrawString(260,700,"Lund GAME  USING  MULTI_THREADING  ", colors[RED]);
-		DrawRoundRect(150+x1,630,500,40,colors[WHITE]);
-		DrawString(160+x1,640,"1) START NEW GAME       Press  S ", colors[BLACK]);
-			
-		DrawRoundRect(150+x1,570,500,40,colors[WHITE]);
-		DrawString(160+x1,580,"2) PLAYER INFO                  Press  I ",colors[BLACK]);
-		
-		DrawRoundRect(150+x1,510,500,40,colors[WHITE]);
-		DrawString(160+x1,520,"3) SELECT MODE                Press  M ",colors[BLACK]);
-			
-		DrawRoundRect(150+x1,450,500,40,colors[WHITE]);
-		DrawString(160+x1,460,"4) EXIST                                Press Esc  ",colors[BLACK]);
+{
+    // Background
+    DrawRectangle(0, 0, 1020, 840, colors[BLACK]);
+    DrawRectangle(20, 20, 980, 800, colors[BLACK]);
 
-	}
-	void DrawBoard()
+    // Moving Rectangle Animation
+    static int x = 100, state = 0;
+    static float* ptr = colors[ORANGE];
+    DrawRectangle(x, 20, 45, 50, ptr);
+    switch (state)
+    {
+    case 0:
+        if (x < 960)
+            x += 5;
+        else
+        {
+            state = 1;
+            ptr = colors[BLUE_VIOLET];
+        }
+        break;
+    case 1:
+        if (x > 10)
+            x -= 5;
+        else
+        {
+            state = 0;
+            ptr = colors[ORANGE];
+        }
+        break;
+    }
+
+    int x1 = 100;
+
+    // Title
+    DrawRoundRect(150 + x1, 690, 500, 50, colors[WHITE], 20);
+    DrawString(260, 700, "LUDO GAME", colors[RED],GLUT_BITMAP_HELVETICA_18);
+
+    // Menu Options
+    
+    DrawRoundRect(150 + x1, 630, 500, 40, colors[WHITE], 15);
+    DrawString(160 + x1, 640, "1) START NEW GAME       Press  S", colors[BLACK],GLUT_BITMAP_HELVETICA_18);
+
+    DrawRoundRect(150 + x1, 570, 500, 40, colors[WHITE], 15);
+    DrawString(160 + x1, 580, "2) PLAYER INFO                  Press  I", colors[BLACK],GLUT_BITMAP_HELVETICA_18);
+
+    DrawRoundRect(150 + x1, 510, 500, 40, colors[WHITE], 15);
+    DrawString(160 + x1, 520, "3) SELECT MODE                Press  M", colors[BLACK],GLUT_BITMAP_HELVETICA_18);
+
+    DrawRoundRect(150 + x1, 450, 500, 40, colors[WHITE], 15);    
+	DrawString(160 + x1, 460, "4) EXIT                                Press Esc", colors[BLACK],GLUT_BITMAP_HELVETICA_18);
+
+    // Footer
+    DrawRoundRect(150 + x1, 380, 500, 40, colors[BLACK], 15);
+    DrawString(200 + x1, 390, "Created by Usman , Rayyan and Safdar", colors[WHITE],GLUT_BITMAP_HELVETICA_12);
+}
+void DrawBoard()
 	{
 		DrawBoardAstetic();
 		DrawStop(6, 1);

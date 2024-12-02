@@ -328,10 +328,10 @@ void DrawLine(int x1, int y1, int x2, int y2, int lwidth = 3, float *color =
 // Function draws a rectangle with rounded corners at given x,y coordinates
 void DrawRoundRect(float x, float y, float width, float height,
 		float* color = 0, float radius = 0.0);
-// Function draws a string at given x,y coordinates
-void DrawString(int x, int y, int width, int height, const string& str,
-		float * color = NULL);
-void DrawString(float x, float y, const string& str, float * color = NULL);
+// Function draws a string at given x,y coordinatesvoid DrawString(int x, int y, int width, int height, const string& str,
+void DrawString(int x, int y, int width, int height, const string& str,float* color, GLvoid* font= GLUT_BITMAP_TIMES_ROMAN_24);
+void DrawString(float x, float y, const string& str, float* color = NULL, GLvoid* font = GLUT_BITMAP_TIMES_ROMAN_24);
+
 
 // seed the random numbers generator by current time (see the documentation of srand for further help)...
 void InitRandomizer();

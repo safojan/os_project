@@ -231,10 +231,12 @@ void* PlayerTurn(void* arg)
 		while(countturn!=0){}
 
 		// Check wheather a thread Has satisfy Win Condition or not
+		
 		sem_wait(&winCheck);
 			p1 = *(int*)arg;
 			b->Player_s[p1].Noofturns++;
-			To_Cancel[p1]= Cancellation_Check(p1);
+			To_Cancel[p1]= false;
+			//To_Cancel[p1]= Cancellation_Check(p1);
 			if(b->Player_s[p1].Noofturns==TurnConsective)
 			{
 				b->Player_s[p1].Noofturns=0;
@@ -244,6 +246,7 @@ void* PlayerTurn(void* arg)
 			totalp--;
 		sem_post(&winCheck);
 		while(c1){}
+		
 
 	}
 	pthread_exit(NULL);
