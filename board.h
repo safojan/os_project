@@ -176,7 +176,7 @@ struct Board
     DrawRoundRect(150 + x1, 380, 500, 40, colors[BLACK], 15);
     DrawString(200 + x1, 390, "Created by Usman , Rayyan and Safdar", colors[WHITE],GLUT_BITMAP_HELVETICA_12);
 }
-void DrawBoard()
+	void DrawBoard()
 	{
 		DrawBoardAstetic();
 		DrawStop(6, 1);
@@ -209,64 +209,86 @@ void DrawBoard()
 	{
 		if(playerNo!=-1)
 		{
-			DrawString(880,640,playerName[playerNo]+"'s Turn",colors[WHITE]);
-			DrawString(880,500,"Hit Rates", colors[WHITE] );
+			DrawString(880,640,playerName[playerNo],colors[GREEN],GLUT_BITMAP_HELVETICA_18);
+			DrawString(880,500,"Kills", colors[RED] );
 			int y=450;
 			for(int i=0; i<Players; i++)
 			{
-				DrawString(880,y,playerName[i]+" ::"+Num2Str(Player_s[i].HitRates),colors[WHITE]);
+				DrawString(880,y,playerName[i]+" >>"+Num2Str(Player_s[i].HitRates),colors[WHITE],GLUT_BITMAP_HELVETICA_18);
 				y-=40;
 			}
 		}
 	}
-	void DrawDice()             
-	{
-		int x=880;
-		int y=700;
-		DrawRoundRect(x,y,60,60,colors[WHITE], 10);
-		if(Dice == 1)
-		{
-			DrawCircle(x+30,y+30,5,colors[BLACK]);
-		}
-		else if(Dice == 2)
-		{
-			for(int i=15;i<=45;i+=30){
-				DrawCircle(x+i,y+i,5,colors[BLACK]);
-			}
-		}
-		else if(Dice == 3)
-		{
-			for(int i=15;i<=45;i+=15){
-				DrawCircle(x+i,y+i,5,colors[BLACK]);
-			}			
-		}
-		else if(Dice == 4)
-		{
-			DrawCircle(x+15,y+15,5,colors[BLACK]);
-			DrawCircle(x+45,y+45,5,colors[BLACK]);
-			DrawCircle(x+15,y+45,5,colors[BLACK]);
-			DrawCircle(x+45,y+15,5,colors[BLACK]);
-			
-		}
-		else if(Dice == 5)
-		{
-			DrawCircle(x+15,y+15,5,colors[BLACK]);
-			DrawCircle(x+45,y+45,5,colors[BLACK]);
-			DrawCircle(x+15,y+45,5,colors[BLACK]);
-			DrawCircle(x+45,y+15,5,colors[BLACK]);
-			DrawCircle(x+30,y+30,5,colors[BLACK]);
-		}
-		else if(Dice == 6)
-		{
-			DrawCircle(x+15,y+15,5,colors[BLACK]);
-			DrawCircle(x+15,y+30,5,colors[BLACK]);
-			DrawCircle(x+15,y+45,5,colors[BLACK]);
-			DrawCircle(x+45,y+15,5,colors[BLACK]);
-			DrawCircle(x+45,y+30,5,colors[BLACK]);
-			DrawCircle(x+45,y+45,5,colors[BLACK]);
-		}
-	}
+	
+	
+void DrawDice() {
+    static int x = 880;           // Dice position (x)
+    static int y = 700;           // Dice position (y)
+    static int animationFrames = 0; // Frames counter for animation
+    static bool rolling = false;  // Whether the dice is rolling
+    static int displayedDice = 1; // Dice value currently displayed during animation
+    static int previousDice = -1; // Tracks the last shown Dice value
 
+    const int rollDuration = 50; // Total frames for the rolling animation
+
+    // Detect if Dice has changed
+    if (Dice != previousDice) {
+        rolling = true;           // Trigger rolling animation
+        animationFrames = 0;      // Reset animation counter
+        previousDice = Dice;      // Update the last shown Dice value
+    }
+
+    // Draw dice background
+    DrawRoundRect(x, y, 60, 60, colors[BLUE], 10);
+
+    if (rolling) {
+        // During rolling animation, display random dice values
+        displayedDice = rand() % 6 + 1;
+
+        // Increment animation frame count
+        animationFrames++;
+
+        // Stop rolling after the animation duration
+        if (animationFrames >= rollDuration) {
+            rolling = false;      // End rolling
+            displayedDice = Dice; // Show the final Dice value
+        }
+    }
+
+    // Draw the dots based on the current dice value (rolling or final)
+    if (displayedDice == 1) {
+        DrawCircle(x + 30, y + 30, 5, colors[RED]);
+    } else if (displayedDice == 2) {
+        for (int i = 15; i <= 45; i += 30) {
+            DrawCircle(x + i, y + i, 5, colors[RED]);
+        }
+    } else if (displayedDice == 3) {
+        for (int i = 15; i <= 45; i += 15) {
+            DrawCircle(x + i, y + i, 5, colors[RED]);
+        }
+    } else if (displayedDice == 4) {
+        DrawCircle(x + 15, y + 15, 5, colors[RED]);
+        DrawCircle(x + 45, y + 45, 5, colors[RED]);
+        DrawCircle(x + 15, y + 45, 5, colors[RED]);
+        DrawCircle(x + 45, y + 15, 5, colors[RED]);
+    } else if (displayedDice == 5) {
+        DrawCircle(x + 15, y + 15, 5, colors[RED]);
+        DrawCircle(x + 45, y + 45, 5, colors[RED]);
+        DrawCircle(x + 15, y + 45, 5, colors[RED]);
+        DrawCircle(x + 45, y + 15, 5, colors[RED]);
+        DrawCircle(x + 30, y + 30, 5, colors[RED]);
+    } else if (displayedDice == 6) {
+        DrawCircle(x + 15, y + 15, 5, colors[RED]);
+        DrawCircle(x + 15, y + 30, 5, colors[RED]);
+        DrawCircle(x + 15, y + 45, 5, colors[RED]);
+        DrawCircle(x + 45, y + 15, 5, colors[RED]);
+        DrawCircle(x + 45, y + 30, 5, colors[RED]);
+        DrawCircle(x + 45, y + 45, 5, colors[RED]);
+    }
+}
+
+
+	
 	// Drawing stops using hard coding approach
 	// This function Draw stops of respective color
 	void DrawStop(int i,int j)

@@ -19,6 +19,7 @@ using namespace std;
 
 
 int main(int argc, char*argv[]) {
+srand(static_cast<unsigned>(time(0))); // Seed for random numbers
 
 	int width = 1020, height = 840; // i have set my window size to be 800 x 600
 	sem_init(&Dice_Roll,0, 1);
