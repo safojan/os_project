@@ -191,8 +191,16 @@ void DrawBoard()
 		glClear (GL_COLOR_BUFFER_BIT);   
 		DrawRectangle(100,200,700,500,colors[RED]);
 		DrawRectangle(120,220,660,460,colors[BLACK]);
-		DrawString(200,600,"PLAYER NAMES:: ",colors[RED]);
-		DrawString(200,300,"PRESS B TO BACK TO MANU ",colors[RED]);
+		DrawString(200,600,"PLAYER NAMES:: ",colors[RED],GLUT_BITMAP_HELVETICA_18);
+	float tempX=300;
+		for (int i = 0; i < Players; i++)
+		{
+			
+			DrawString(tempX,500,playerName[i],colors[WHITE],GLUT_BITMAP_HELVETICA_12);
+			tempX+=100;
+		}
+		
+		DrawString(200,300,"PRESS B TO BACK TO MANU ",colors[RED],GLUT_BITMAP_HELVETICA_10);
 	}
 
 
