@@ -1,9 +1,8 @@
-/*
- * util.cpp
- *
- *  Created on: May 2, 2014
- *      Author: Sibt ul Hussain
- */
+/* 
+M USMAN GHANI (22I-8796)
+RAYYAN AHMED  (22I-2489)
+SAFDAR JAN    (22I-8804)
+*/
 #include "util.h"
 /*
  * This function converts an input angle from degree to radians */

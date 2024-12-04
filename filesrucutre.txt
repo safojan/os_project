@@ -1,9 +1,23 @@
-CImg.h
-game.exe
+M USMAN GHANI (22I-8796)
+RAYYAN AHMED  (22I-2489)
+SAFDAR JAN    (22I-8804)
+
+######FILE STRUCTURE####################################
+
+
+coordinate.cpp
+coordinate.h
+token.cpp
+token.h
+player.cpp
+player.h
+board.cpp
+board.h
+globals.cpp
+globals.h
 game.cpp
-game.o
-install-libraries.sh
-Makefile
 util.cpp
 util.h
-util.o
+
+
+##########################################################

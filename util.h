@@ -1,10 +1,8 @@
-/*
- * util.h
- *
- *  Created on: May 2, 2014
- *      Author: Sibt ul Hussain
- */
-
+/* 
+M USMAN GHANI (22I-8796)
+RAYYAN AHMED  (22I-2489)
+SAFDAR JAN    (22I-8804)
+*/
 #ifndef UTIL_H_
 #define UTIL_H_
 #include <GL/gl.h>

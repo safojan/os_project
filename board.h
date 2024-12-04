@@ -1,3 +1,8 @@
+/* 
+M USMAN GHANI (22I-8796)
+RAYYAN AHMED  (22I-2489)
+SAFDAR JAN    (22I-8804)
+*/
 #ifndef BOARD_H
 #define BOARD_H
 #include "util.h"
@@ -166,11 +171,7 @@ struct Board
     DrawRoundRect(150 + x1, 570, 500, 40, colors[WHITE], 15);
     DrawString(160 + x1, 580, "2) PLAYER INFO                  Press  I", colors[BLACK],GLUT_BITMAP_HELVETICA_18);
 
-    DrawRoundRect(150 + x1, 510, 500, 40, colors[WHITE], 15);
-    DrawString(160 + x1, 520, "3) SELECT MODE                Press  M", colors[BLACK],GLUT_BITMAP_HELVETICA_18);
-
-    DrawRoundRect(150 + x1, 450, 500, 40, colors[WHITE], 15);    
-	DrawString(160 + x1, 460, "4) EXIT                                Press Esc", colors[BLACK],GLUT_BITMAP_HELVETICA_18);
+	DrawString(160 + x1, 460, "                              Press Esc to exit", colors[RED],GLUT_BITMAP_HELVETICA_18);
 
     // Footer
     DrawRoundRect(150 + x1, 380, 500, 40, colors[BLACK], 15);
@@ -184,24 +185,36 @@ struct Board
 		DrawDice();
 		DrawSideManu();
 	}
-	void DisplayPlayerInfo()
-	{
-		glClearColor(1/*Red Component*/, 1,	//148.0/255/*Green Component*/,
-			1/*Blue Component*/, 1 /*Alpha component*/); // Red==Green==Blue==1 --> White Colour
-		glClear (GL_COLOR_BUFFER_BIT);   
-		DrawRectangle(100,200,700,500,colors[RED]);
-		DrawRectangle(120,220,660,460,colors[BLACK]);
-		DrawString(200,600,"PLAYER NAMES:: ",colors[RED],GLUT_BITMAP_HELVETICA_18);
-	float tempX=300;
-		for (int i = 0; i < Players; i++)
-		{
-			
-			DrawString(tempX,500,playerName[i],colors[WHITE],GLUT_BITMAP_HELVETICA_12);
-			tempX+=100;
-		}
-		
-		DrawString(200,300,"PRESS B TO BACK TO MANU ",colors[RED],GLUT_BITMAP_HELVETICA_10);
-	}
+	void DisplayPlayerInfo() {
+    // Set background color to black
+    glClearColor(0, 0, 0, 1); // Red=0, Green=0, Blue=0, Alpha=1 (Black Color)
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // Draw a white border around the info box
+    DrawRectangle(120, 220, 660, 460, colors[BLACK]); // Inner background
+
+    // Title
+    DrawString(250, 650, "PLAYER INFORMATION", colors[GREEN], GLUT_BITMAP_HELVETICA_18);
+
+    // Subtitle
+    DrawString(220, 600, "Player Names:", colors[WHITE], GLUT_BITMAP_HELVETICA_18);
+
+    // Display player names with some spacing
+    float tempX = 250;
+    float tempY = 550;
+    for (int i = 0; i < Players; i++) {
+        DrawString(tempX, tempY, playerName[i], colors[BLUE], GLUT_BITMAP_HELVETICA_12);
+        tempY -= 40; // Move down for the next player's name
+        if (tempY < 250) { // If names exceed the box, wrap to the next column
+            tempY = 550;
+            tempX += 200;
+        }
+    }
+
+    // Footer Instructions
+    DrawString(200, 220, "PRESS 'B' TO RETURN TO MENU", colors[RED], GLUT_BITMAP_HELVETICA_18);
+}
+
 
 
 

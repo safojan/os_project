@@ -1,3 +1,8 @@
+/* 
+M USMAN GHANI (22I-8796)
+RAYYAN AHMED  (22I-2489)
+SAFDAR JAN    (22I-8804)
+*/
 #ifndef CENTIPEDE_CPP_
 #define CENTIPEDE_CPP_
 #include "util.h"
